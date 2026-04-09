@@ -30,6 +30,11 @@ path_theta = []
 
 # --- Control Loop ---
 while True:
+    # Store path
+    path_x.append(x)
+    path_y.append(y)
+    path_theta.append(theta)
+
     # Distance error
     dx = x_tar - x
     dy = y_tar - y
@@ -53,11 +58,6 @@ while True:
     x += v * math.cos(theta) * dt
     y += v * math.sin(theta) * dt
     theta += omega * dt
-
-    # Store path
-    path_x.append(x)
-    path_y.append(y)
-    path_theta.append(theta)
 
 # --- Plot ---
 plt.figure()
@@ -85,7 +85,7 @@ plt.arrow(start_x, start_y,
 # Plot arrows along the path
 arrow_length = 0.2
 
-for i in range(0, len(path_x), 1): 
+for i in range(1, len(path_x), 1): 
     plt.arrow(path_x[i], path_y[i],
               arrow_length * math.cos(path_theta[i]),
               arrow_length * math.sin(path_theta[i]),
