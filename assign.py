@@ -26,6 +26,7 @@ tolerance = 0.1
 
 path_x = []
 path_y = []
+path_theta = []
 
 # --- Control Loop ---
 while True:
@@ -56,6 +57,7 @@ while True:
     # Store path
     path_x.append(x)
     path_y.append(y)
+    path_theta.append(theta)
 
 # --- Plot ---
 plt.figure()
@@ -74,14 +76,23 @@ start_y = path_y[0] if path_y else y
 plt.plot(start_x, start_y, 'go', label="Start")
 
 # Draw orientation arrow at start
-arrow_length = 0.5
+arrow_length = 0.4
 plt.arrow(start_x, start_y,
           arrow_length * math.cos(theta_start), 
           arrow_length * math.sin(theta_start),
           head_width=0.2, color='g')
 
+# Plot arrows along the path
+arrow_length = 0.2
+
+for i in range(0, len(path_x), 1): 
+    plt.arrow(path_x[i], path_y[i],
+              arrow_length * math.cos(path_theta[i]),
+              arrow_length * math.sin(path_theta[i]),
+              head_width=0.15, head_length=0.2, fc='blue', ec='blue')
+
 # --- END POSITION (optional) ---
-plt.plot(x, y, 'bx', label="Final Position")
+plt.plot(x, y, 'kx', label="Final Position")
 
 # Tolerance circle
 ang = np.linspace(0, 2*np.pi, 100)
