@@ -1,5 +1,6 @@
 # 2D Waypoint Controller for Differential Drive Robot
 ------------------------------------------------------------------------
+Youtube Video: https://youtu.be/b2inU3ziVZ4?si=RfjLXJML_jAkMSRt
 
 ## Problem Definition
 
